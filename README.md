@@ -13,7 +13,6 @@ _A fun game to play with friends_
 
 ```bash
 git clone https://github.com/thihaswe-work/react-tiktak-toe.git
-
 ```
 
 ```bash
