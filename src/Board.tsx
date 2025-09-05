@@ -10,7 +10,7 @@ const useGameStore = create(
     },
     (set) => {
       return {
-        setHistory: (nextHistory) => {
+        setHistory: (nextHistory: any) => {
           set((state) => ({
             history:
               typeof nextHistory === "function"
@@ -18,7 +18,7 @@ const useGameStore = create(
                 : nextHistory,
           }));
         },
-        setCurrentMove: (nextCurrentMove) => {
+        setCurrentMove: (nextCurrentMove: any) => {
           set((state) => ({
             currentMove:
               typeof nextCurrentMove === "function"
@@ -26,7 +26,7 @@ const useGameStore = create(
                 : nextCurrentMove,
           }));
         },
-        setXIsNext: (nextXIsNext) => {
+        setXIsNext: (nextXIsNext: any) => {
           set((state) => ({
             xIsNext:
               typeof nextXIsNext === "function"
@@ -46,7 +46,7 @@ const useGameStore = create(
   )
 );
 
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick }: any) {
   return (
     <button
       style={{
@@ -69,14 +69,14 @@ function Square({ value, onSquareClick }) {
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay }: any) {
   const winner = calculateWinner(squares);
   const turns = calculateTurns(squares);
   const player = xIsNext ? "X" : "O";
   const status = calculateStatus(winner, turns, player);
   const setReset = useGameStore((state) => state.setReset);
 
-  function handleClick(i) {
+  function handleClick(i: number) {
     if (squares[i] || winner) return;
     const nextSquares = squares.slice();
     nextSquares[i] = player;
@@ -101,7 +101,7 @@ function Board({ xIsNext, squares, onPlay }) {
           border: "1px solid #999",
         }}
       >
-        {squares.map((square, squareIndex) => (
+        {squares.map((square: number, squareIndex: number) => (
           <Square
             key={squareIndex}
             value={square}
@@ -121,12 +121,12 @@ export default function Game() {
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares: any) {
     const nextHistory = history.slice(0, currentMove + 1).concat([nextSquares]);
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
-  function jumpTo(nextMove) {
+  function jumpTo(nextMove: any) {
     setCurrentMove(nextMove);
   }
   return (
@@ -162,7 +162,7 @@ export default function Game() {
   );
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares: any) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -184,11 +184,11 @@ function calculateWinner(squares) {
   return null;
 }
 
-function calculateTurns(squares) {
-  return squares.filter((square) => !square).length;
+function calculateTurns(squares: any) {
+  return squares.filter((square: any) => !square).length;
 }
 
-function calculateStatus(winner, turns, player) {
+function calculateStatus(winner: any, turns: any, player: any) {
   if (!winner && !turns) return "Draw";
   if (winner) return `Winner ${winner}`;
   return `Next player: ${player}`;
