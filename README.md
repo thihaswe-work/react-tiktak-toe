@@ -20,7 +20,9 @@ git clone https://github.com/thihaswe-work/react-tiktak-toe.git
 cd react-tiktak-toe
 ```
 
-`npm install`
+```
+npm install
+```
 
 `npm run dev`
 
