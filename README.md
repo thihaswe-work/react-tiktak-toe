@@ -24,6 +24,8 @@ cd react-tiktak-toe
 npm install
 ```
 
-`npm run dev`
+```cmd
+npm run dev
+```
 
 the game will appears on `localhost:3000` of your browser.
